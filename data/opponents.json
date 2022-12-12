@@ -53,7 +53,7 @@
     "photo": "https://upload.wikimedia.org/wikipedia/en/b/b2/Koopa_Troopa_NSMBU.png",
     "win": 1,
     "lose": 2,
-    "tie": 0
+    "tie": 0 
   },
   "Toadette": {
     "name": "Toadette",
