@@ -160,6 +160,24 @@ app.post('/opponentCreate', function(request, response) {
     }
 });
 
+app.get('/createClub', function(request, response) {
+    let opponents = JSON.parse(fs.readFileSync('data/opponents.json'));
+    response.status(200);
+    response.setHeader('Content-Type', 'text/html')
+    response.render("createClub", {
+      data: opponents
+    });
+});
+
+app.get('/clubList', function(request, response) {
+    let opponents = JSON.parse(fs.readFileSync('data/opponents.json'));
+    response.status(200);
+    response.setHeader('Content-Type', 'text/html')
+    response.render("clubList", {
+      data: opponents
+    });
+});
+
 // Because routes/middleware are applied in order,
 // this will act as a default error route in case of
 // a request fot an invalid route
