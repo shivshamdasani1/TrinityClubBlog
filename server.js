@@ -146,7 +146,7 @@ app.post('/opponentCreate', function(request, response) {
         "tie": 0,
       }
       opponents[opponentName] = newOpponent;
-      fs.writeFileSync('data/opponents.json', JSON.stringify(opponents));
+      fs.writeFileSync('data/clubs.json', JSON.stringify(opponents));
 
       response.status(200);
       response.setHeader('Content-Type', 'text/html')
@@ -161,7 +161,7 @@ app.post('/opponentCreate', function(request, response) {
 });
 
 app.get('/createClub', function(request, response) {
-    let opponents = JSON.parse(fs.readFileSync('data/opponents.json'));
+    let opponents = JSON.parse(fs.readFileSync('data/clubs.json'));
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
     response.render("createClub", {
@@ -169,12 +169,39 @@ app.get('/createClub', function(request, response) {
     });
 });
 
+app.post('/createClub', function(request, response) {
+    let opponentName = request.body.opponentName;
+    let opponentPhoto = request.body.opponentPhoto;
+    if(opponentName&&opponentPhoto){
+      let opponents = JSON.parse(fs.readFileSync('data/clubs.json'));
+      let newOpponent={
+        "name": opponentName,
+        "photo": opponentPhoto,
+        "win":0,
+        "lose": 0,
+        "tie": 0,
+      }
+      opponents[opponentName] = newOpponent;
+      fs.writeFileSync('data/clubs.json', JSON.stringify(opponents));
+
+      response.status(200);
+      response.setHeader('Content-Type', 'text/html')
+      response.redirect("/opponent/"+opponentName);
+    }else{
+      response.status(400);
+      response.setHeader('Content-Type', 'text/html')
+      response.render("error", {
+        "errorCode":"400"
+      });
+    }
+});
+
 app.get('/clubList', function(request, response) {
-    let opponents = JSON.parse(fs.readFileSync('data/opponents.json'));
+    let clubs = JSON.parse(fs.readFileSync('data/clubs.json'));
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
     response.render("clubList", {
-      data: opponents
+      data: clubs
     });
 });
 

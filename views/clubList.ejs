@@ -2,7 +2,13 @@
 
 <h2>Club Directory</h2>
 
-<h5>Club name here</h5>
-<h6>Club description here</h6>
+<% for (let name in data) { %>
+<h5><%=name%><h5>
+<h6><%=name[studentLeaders]%><h6>
+<h6><%=name[advisors]%><h6>
+<h6><%=name[description]%><h6>
+
+<% } %>
+
 
 <%- include('partials/footer') -%>
