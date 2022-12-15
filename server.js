@@ -23,7 +23,7 @@ app.get('/', function(request, response) {
 });
 
 app.get('/play', function(request, response) {
-    let opponents = JSON.parse(fs.readFileSync('data/opponents.json'));
+    let opponents = JSON.parse(fs.readFileSync('data/clubs.json'));
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
     response.render("play", {
@@ -32,7 +32,7 @@ app.get('/play', function(request, response) {
 });
 
 app.get('/results', function(request, response) {
-    let opponents = JSON.parse(fs.readFileSync('data/opponents.json'));
+    let opponents = JSON.parse(fs.readFileSync('data/clubs.json'));
 
     //accessing URL query string information from the request object
     let opponent = request.query.opponent;
@@ -64,8 +64,8 @@ app.get('/results', function(request, response) {
       else if(results["outcome"]=="win") opponents[opponent]["lose"]++;
       else opponents[opponent]["tie"]++;
 
-      //update opponents.json to permanently remember results
-      fs.writeFileSync('data/opponents.json', JSON.stringify(opponents));
+      //update clubs.json to permanently remember results
+      fs.writeFileSync('data/clubs.json', JSON.stringify(opponents));
 
       response.status(200);
       response.setHeader('Content-Type', 'text/html')
@@ -82,7 +82,7 @@ app.get('/results', function(request, response) {
 });
 
 app.get('/scores', function(request, response) {
-  let opponents = JSON.parse(fs.readFileSync('data/opponents.json'));
+  let opponents = JSON.parse(fs.readFileSync('data/clubs.json'));
   let opponentArray=[];
 
   //create an array to use sort, and dynamically generate win percent
@@ -103,7 +103,7 @@ app.get('/scores', function(request, response) {
 });
 
 app.get('/opponent/:opponentName', function(request, response) {
-  let opponents = JSON.parse(fs.readFileSync('data/opponents.json'));
+  let opponents = JSON.parse(fs.readFileSync('data/clubs.json'));
 
   // using dynamic routes to specify resource request information
   let opponentName = request.params.opponentName;
@@ -137,7 +137,7 @@ app.post('/opponentCreate', function(request, response) {
     let opponentName = request.body.opponentName;
     let opponentPhoto = request.body.opponentPhoto;
     if(opponentName&&opponentPhoto){
-      let opponents = JSON.parse(fs.readFileSync('data/opponents.json'));
+      let opponents = JSON.parse(fs.readFileSync('data/clubs.json'));
       let newOpponent={
         "name": opponentName,
         "photo": opponentPhoto,
