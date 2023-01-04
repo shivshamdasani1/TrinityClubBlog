@@ -1,0 +1,29 @@
+<%- include('partials/header', {title:"Control Account"}) -%>
+
+<h2>Log In/Sign Up</h2>
+
+<h4>Sign Up</h4>
+<form action="/accountCreate" method="POST">
+  <label for="name">First Name:</label>
+  <input type="text" id="name" name="firstname" value=""><br>
+  <label for="name">Last Name:</label>
+  <input type="text" id="name" name="lastname" value=""><br>
+  <label for="username">Username:</label>
+  <input type="text" id="username" name="username" value=""><br>
+  <label for="password">Password:</label>
+  <input type="text" id="password" name="password" value=""><br>
+  <br><br>
+  <input type="submit" value="Create Your Account!">
+</form>
+
+<h4>Log In</h4>
+<form action="/accountLogIn" method="POST">
+  <label for="username">Username:</label>
+  <input type="text" id="username" name="username" value=""><br>
+  <label for="password">Password:</label>
+  <input type="text" id="password" name="password" value=""><br>
+  <br><br>
+  <input type="submit" value="Log In!">
+</form>
+
+<%- include('partials/footer') -%>
