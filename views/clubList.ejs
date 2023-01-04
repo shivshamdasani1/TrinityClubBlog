@@ -1,14 +1,14 @@
-<%- include('partials/header', {title:"Opponent Details- P, R, S"}) -%>
+<%- include('partials/header', {title:"Club List"}) -%>
 
 <h2>Club Directory</h2>
+<ul>
+<%for(let i =0; i<clubs.length; i++){%>
+<li>
+<a href="/clubPage/<%=clubs[i]%>"><%=clubs[i]%></a></li>
 
-<% for (let name in data) { %>
-<h5><%=name%><h5>
-<h6><%=name[studentLeaders]%><h6>
-<h6><%=name[advisors]%><h6>
-<h6><%=name[description]%><h6>
 
 <% } %>
+</ul>
 
 
 <%- include('partials/footer') -%>

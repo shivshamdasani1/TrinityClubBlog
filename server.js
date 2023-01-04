@@ -31,6 +31,23 @@ app.get('/play', function(request, response) {
     });
 });
 
+app.get('/clubList', function(request, response) {
+    let clubs = JSON.parse(fs.readFileSync('data/clubs.json'));
+    //console.log(clubs);
+    let clubNames=[];
+
+    //create an array to use sort, and dynamically generate win percent
+    for(club in clubs){
+      console.log(club);
+      clubNames.push(club)
+    }
+    response.status(200);
+    response.setHeader('Content-Type', 'text/html')
+    response.render("clubList", {
+      clubs: clubNames
+    });
+});
+
 app.get('/results', function(request, response) {
     let opponents = JSON.parse(fs.readFileSync('data/clubs.json'));
 
