@@ -223,23 +223,22 @@ app.get('/controlAccount', function(request, response) {
 });
 
 app.post('/controlAccount', function(request, response) {
-    let opponentName = request.body.opponentName;
-    let opponentPhoto = request.body.opponentPhoto;
-    if(opponentName&&opponentPhoto){
-      let opponents = JSON.parse(fs.readFileSync('data/accounts.json'));
-      let newOpponent={
-        "name": opponentName,
-        "photo": opponentPhoto,
-        "win":0,
-        "lose": 0,
-        "tie": 0,
+    let accountName = request.body.name;
+    let accountUsername = request.body.username;
+    let accountPassword = request.body.password;
+    if(accountName){
+      let accounts = JSON.parse(fs.readFileSync('data/accounts.json'));
+      let newAccount={
+        "name": accountName,
+        "userame": accountUsername,
+        "password":accountPassword,
       }
-      opponents[opponentName] = newOpponent;
-      fs.writeFileSync('data/clubs.json', JSON.stringify(opponents));
+      accounts[accountName] = newAccount;
+      fs.writeFileSync('data/clubs.json', JSON.stringify(accounts));
 
       response.status(200);
       response.setHeader('Content-Type', 'text/html')
-      response.redirect("/opponent/"+opponentName);
+      response.redirect("/opponent/"+accountName);
     }else{
       response.status(400);
       response.setHeader('Content-Type', 'text/html')
