@@ -226,7 +226,7 @@ app.post('/controlAccount', function(request, response) {
     let opponentName = request.body.opponentName;
     let opponentPhoto = request.body.opponentPhoto;
     if(opponentName&&opponentPhoto){
-      let opponents = JSON.parse(fs.readFileSync('data/clubs.json'));
+      let opponents = JSON.parse(fs.readFileSync('data/accounts.json'));
       let newOpponent={
         "name": opponentName,
         "photo": opponentPhoto,
