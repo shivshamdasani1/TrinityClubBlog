@@ -1,8 +1,50 @@
 <%- include('partials/header', {title:"Opponent Details- P, R, S"}) -%>
 
-<h2>Club Name here</h2>
+<h2>Club - <%=club.name%></h2>
 
-<h5>Club description here</h5>
+<img src="<%=opponent.photo%>" height=150 />
 
+<table>
+  <tr>
+    <th>
+      Name:
+    </th>
+    <td>
+      <%=club.name%>
+    </td>
+  </tr>
+  <tr>
+    <th>
+      Student Leaders
+    </th>
+    <td>
+      <%=club.StudentLeaders%>
+    </td>
+  </tr>
+  <tr>
+    <th>
+      Losses:
+    </th>
+    <td>
+      <%=opponent.lose%>
+    </td>
+  </tr>
+  <tr>
+    <th>
+      Ties:
+    </th>
+    <td>
+      <%=opponent.tie%>
+    </td>
+  </tr>
+  <tr>
+    <th>
+      Win %:
+    </th>
+    <td>
+      <%=opponent.win_percent%>
+    </td>
+  </tr>
+</table>
 
 <%- include('partials/footer') -%>
