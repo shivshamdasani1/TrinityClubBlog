@@ -2,9 +2,9 @@
 
 <h2>Club Directory</h2>
 <ul>
-<%for(let i =0; i<clubs.length; i++){%>
+<%for(let club of clubs) {%>
 <li>
-<a href="/clubPage/<%=clubs[i]%>"><%=clubs[i]%></a></li>
+<a href="/clubPage/<%=club%>"><%=club%></a></li>
 
 
 <% } %>

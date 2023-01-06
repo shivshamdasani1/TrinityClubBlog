@@ -48,6 +48,31 @@ app.get('/clubList', function(request, response) {
     });
 });
 
+app.get('/clubPage/:clubName', function(request, response) {
+  let clubs = JSON.parse(fs.readFileSync('data/clubs.json'));
+
+  // using dynamic routes to specify resource request information
+  let clubName = request.params.clubName;
+
+  if (clubs[clubName]) {
+
+    response.status(200);
+    response.setHeader('Content-Type', 'text/html')
+    response.render("clubPage",{
+      club: clubs[clubName]
+    });
+
+  }
+  else{
+    response.status(404);
+    response.setHeader('Content-Type', 'text/html')
+    response.render("error", {
+      "errorCode":"404"
+    });
+  }
+});
+
+
 app.get('/results', function(request, response) {
     let opponents = JSON.parse(fs.readFileSync('data/clubs.json'));
 
@@ -249,15 +274,6 @@ app.post('/controlAccount', function(request, response) {
 });
 
 
-
-app.get('/clubList', function(request, response) {
-    let clubs = JSON.parse(fs.readFileSync('data/clubs.json'));
-    response.status(200);
-    response.setHeader('Content-Type', 'text/html')
-    response.render("clubList", {
-      data: clubs
-    });
-});
 
 // Because routes/middleware are applied in order,
 // this will act as a default error route in case of
