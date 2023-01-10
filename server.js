@@ -41,6 +41,7 @@ app.get('/clubList', function(request, response) {
 
 app.get('/clubPage/:clubName', function(request, response) {
   let clubs = JSON.parse(fs.readFileSync('data/clubs.json'));
+  let reviews = JSON.parse(fs.readFileSync('data/reviews.json'));
 
   // using dynamic routes to specify resource request information
   let clubName = request.params.clubName;
@@ -50,7 +51,9 @@ app.get('/clubPage/:clubName', function(request, response) {
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
     response.render("clubPage",{
-      club: clubs[clubName]
+      club: clubs[clubName],
+      nameClub: clubName,
+      reviews: reviews
     });
 
   }
