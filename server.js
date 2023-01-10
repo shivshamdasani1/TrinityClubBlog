@@ -113,13 +113,16 @@ app.post('/createReview', function(request, response) {
 app.post('/createClub', function(request, response) {
   console.log("request: ", request);
     let clubName = request.body.clubName;
+    let category = request.body.category;
     let studentLeaders = request.body.studentLeaders;
     let description = request.body.description;
     let advisors = request.body.advisors;
-    if(clubName && studentLeaders && advisors){
+    if(clubName && category && studentLeaders && advisors){
       let clubs = JSON.parse(fs.readFileSync('data/clubs.json'));
+      let categories = JSON.parse(fs.readFileSync('data/categories.json'));
       let newClub={
         "name": clubName,
+        "category": category,
         "studentLeaders": studentLeaders,
         "description": description,
         "advisors": advisors,
@@ -141,39 +144,15 @@ app.post('/createClub', function(request, response) {
 
 app.get('/createClub', function(request, response) {
     let clubs = JSON.parse(fs.readFileSync('data/clubs.json'));
+    let categories = JSON.parse(fs.readFileSync('data/categories.json'));
     response.status(200);
     response.setHeader('Content-Type', 'text/html')
     response.render("createClub", {
-      data: clubs
+      data: clubs,
+      categories: categories
     });
 });
 
-app.post('/createClub', function(request, response) {
-    let opponentName = request.body.opponentName;
-    let opponentPhoto = request.body.opponentPhoto;
-    if(opponentName&&opponentPhoto){
-      let opponents = JSON.parse(fs.readFileSync('data/clubs.json'));
-      let newOpponent={
-        "name": opponentName,
-        "photo": opponentPhoto,
-        "win":0,
-        "lose": 0,
-        "tie": 0,
-      }
-      opponents[opponentName] = newOpponent;
-      fs.writeFileSync('data/clubs.json', JSON.stringify(opponents));
-
-      response.status(200);
-      response.setHeader('Content-Type', 'text/html')
-      response.redirect("/opponent/"+opponentName);
-    }else{
-      response.status(400);
-      response.setHeader('Content-Type', 'text/html')
-      response.render("error", {
-        "errorCode":"400"
-      });
-    }
-});
 
 
 
