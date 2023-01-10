@@ -37,6 +37,19 @@
     </td>
   </tr>
 
+    <% for (let rev in reviews) { %>
+      <% if (reviews[rev]["clubName"] == nameClub) { %>
+  <tr>
+    <th>
+      Reviews
+    </th>
+    <td>
+      <%=reviews[rev]["authorName"] + ": " + reviews[rev]["review"]%>
+    </td>
+  </tr>
+      <% } %>
+    <% } %>
+
 </table>
 
 <%- include('partials/footer') -%>
