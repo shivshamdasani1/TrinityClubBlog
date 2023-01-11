@@ -1,55 +1,62 @@
-<%- include('partials/header', {title:"Opponent Details- P, R, S"}) -%>
+<%- include('partials/header', {title:"Club Page"}) -%>
 
-<h2>Club - <%=club.name%></h2>
+  <h2>Club - <%=club.name%>
+  </h2>
 
 
-<table>
-  <tr>
-    <th>
-      Name:
-    </th>
-    <td>
-      <%=club.name%>
-    </td>
-  </tr>
-  <tr>
-    <th>
-      Student Leaders
-    </th>
-    <td>
-      <%=club.studentLeaders%>
-    </td>
-  </tr>
-  <tr>
-    <th>
-      Advisors
-    </th>
-    <td>
-      <%=club.advisors%>
-    </td>
-  </tr>
-  <tr>
-    <th>
-      Description
-    </th>
-    <td>
-      <%=club.description%>
-    </td>
-  </tr>
+  <table>
+    <tr>
+      <th>
+        Name:
+      </th>
+      <td>
+        <%=club.name%>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Category
+      </th>
+      <td>
+        <%=club.categegory%>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Student Leaders
+      </th>
+      <td>
+        <%=club.studentLeaders%>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Advisors
+      </th>
+      <td>
+        <%=club.advisors%>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Description
+      </th>
+      <td>
+        <%=club.description%>
+      </td>
+    </tr>
+  </table>
 
-    <% for (let rev in reviews) { %>
-      <% if (reviews[rev]["clubName"] == nameClub) { %>
-  <tr>
-    <th>
-      Reviews
-    </th>
-    <td>
-      <%=reviews[rev]["authorName"] + ": " + reviews[rev]["review"]%>
-    </td>
-  </tr>
+  <h2>
+    Reviews
+  </h2>
+  <% for (let rev in reviews) { %>
+    <% if (reviews[rev]["clubName"]==nameClub) { %>
+
+      <p>
+        <%=reviews[rev]["authorName"] + ": " + reviews[rev]["review"]%>
+      </p>
       <% } %>
-    <% } %>
+        <% } %>
 
-</table>
-
-<%- include('partials/footer') -%>
+  <%- include('partials/footer') -%>
